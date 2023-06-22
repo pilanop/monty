@@ -7,19 +7,17 @@
  *
  * Return: void
  */
-void pop(stack_t **stack, unsigned int line_cnt)
+void pop(stack_t **stack, unsigned int line_number)
 {
-	stack_t *h;
+	stack_t *tmp;
 
 	if (*stack == NULL)
 	{
-		fprintf(stderr, "L%d: can't pop an empty stack\n", line_cnt);
-		fclose(bus.file);
-		free(bus.content);
-		free_stack(*stack);
+		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	h = *stack;
-	*stack = h->next;
-	free(h);
+
+	tmp = *stack;
+	*stack = (*stack)->next;
+	free(tmp);
 }
