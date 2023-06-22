@@ -116,4 +116,3 @@ exit(EXIT_FAILURE);
 
 printf("%d\n", (*stack)->n);
 }
-
