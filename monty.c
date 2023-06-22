@@ -1,5 +1,4 @@
 #include "monty.h"
-
 #define MAX_LINE_LENGTH 1024
 
 void free_stack(stack_t *stack);
@@ -37,6 +36,7 @@ stack_t *stack = NULL;
 instruction_t opcodes[] = {
 {"push", push},
 {"pall", pall},
+{"pint", pint},
 {NULL, NULL}
 };
 
@@ -54,7 +54,6 @@ exit(EXIT_FAILURE);
 }
 
 read_file(fp, opcodes, &stack);
-
 fclose(fp);
 free_stack(stack);
 
@@ -98,5 +97,23 @@ free_stack(*stack);
 exit(EXIT_FAILURE);
 }
 }
+}
+
+/**
+* pint - prints the value at the top of the stack, followed by a new line
+* @stack: double pointer to the top of the stack
+* @line_number: line number of the current opcode
+*
+* Return: void
+*/
+void pint(stack_t **stack, unsigned int line_number)
+{
+if (*stack == NULL)
+{
+fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
+exit(EXIT_FAILURE);
+}
+
+printf("%d\n", (*stack)->n);
 }
 
