@@ -9,18 +9,15 @@
  */
 void pop(stack_t **stack, unsigned int line_number)
 {
-	stack_t *template;
+	stack_t *nodo = *stack;
 
 	if (stack == NULL || *stack == NULL)
 	{
-		dprintf(2, "L%d: can't pop an empty stack\n", line_number);
-		free_vglo();
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-
-	template = *stack;
-	*stack = template->next;
+	*stack = nodo->next;
 	if (*stack != NULL)
 		(*stack)->prev = NULL;
-	free(template);
+	free(nodo);
 }
