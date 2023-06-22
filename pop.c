@@ -12,9 +12,11 @@ void pop(stack_t **stack, unsigned int line_number)
 	stack_t *template;
 
 	if (stack == NULL || *stack == NULL)
+	{
 		dprintf(2, "L%d: can't pop an empty stack\n", line_number);
-	free_vglo();
-	exit(EXIT_FAILURE);
+		free_vglo();
+		exit(EXIT_FAILURE);
+	}
 
 	template = *stack;
 	*stack = template->next;
