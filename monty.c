@@ -2,42 +2,24 @@
 
 #define MAX_LINE_LENGTH 1024
 
+void free_stack(stack_t *stack);
+void read_file(FILE *fp, instruction_t opcodes[], stack_t **stack);
+
 /**
-* read_file - reads the input file line by line and executes instructions
-* @fp: file pointer to the input file
-* @opcodes: array of instruction_t structs
+* free_stack - frees a stack_t stack
 * @stack: pointer to the top of the stack
 *
 * Return: void
 */
-void read_file(FILE *fp, instruction_t opcodes[], stack_t **stack)
+void free_stack(stack_t *stack)
 {
-char line[MAX_LINE_LENGTH];
-unsigned int line_number = 0;
-int i;
-char *opcode;
+stack_t *tmp;
 
-while (fgets(line, MAX_LINE_LENGTH, fp) != NULL)
+while (stack != NULL)
 {
-line_number++;
-opcode = strtok(line, DELIMS);
-if (opcode == NULL || strncmp(opcode, "#", 1) == 0)
-continue;
-for (i = 0; opcodes[i].opcode; i++)
-{
-if (strcmp(opcode, opcodes[i].opcode) == 0)
-{
-opcodes[i].f(stack, line_number);
-break;
-}
-}
-if (opcodes[i].f == NULL)
-{
-fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
-fclose(fp);
-free_stack(*stack);
-exit(EXIT_FAILURE);
-}
+tmp = stack;
+stack = stack->next;
+free(tmp);
 }
 }
 
@@ -77,5 +59,44 @@ fclose(fp);
 free_stack(stack);
 
 return (EXIT_SUCCESS);
+}
+
+/**
+* read_file - reads the input file line by line and executes instructions
+* @fp: file pointer to the input file
+* @opcodes: array of instruction_t structs
+* @stack: pointer to the top of the stack
+*
+* Return: void
+*/
+void read_file(FILE *fp, instruction_t opcodes[], stack_t **stack)
+{
+char line[MAX_LINE_LENGTH];
+unsigned int line_number = 0;
+int i;
+char *opcode;
+
+while (fgets(line, MAX_LINE_LENGTH, fp) != NULL)
+{
+line_number++;
+opcode = strtok(line, DELIMS);
+if (opcode == NULL || strncmp(opcode, "#", 1) == 0)
+continue;
+for (i = 0; opcodes[i].opcode; i++)
+{
+if (strcmp(opcode, opcodes[i].opcode) == 0)
+{
+opcodes[i].f(stack, line_number);
+break;
+}
+}
+if (opcodes[i].f == NULL)
+{
+fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
+fclose(fp);
+free_stack(*stack);
+exit(EXIT_FAILURE);
+}
+}
 }
 
