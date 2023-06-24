@@ -12,7 +12,7 @@ void push(stack_t **stack, unsigned int line)
 	char *arg = strtok(NULL, DELIMS);
 	int n;
 
-	if (arg == NULL || _isdigit(arg) == 0)
+	if (arg == NULL || check_digit(arg) == 0)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line);
 		exit(EXIT_FAILURE);
@@ -23,12 +23,12 @@ void push(stack_t **stack, unsigned int line)
 }
 
 /**
- * _isdigit - checks if a string contains only digits
+ * check_digit - checks if a string contains only digits
  * @str: string to check
  *
  * Return: 1 if true, 0 if false
  */
-int _isdigit(char *str)
+int check_digit(char *str)
 {
 	int i;
 
