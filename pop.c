@@ -3,21 +3,21 @@
 /**
  * pop - removes the top element of the stack
  * @stack: double pointer to the top of the stack
- * @line_number: line number of the current opcode
+ * @line: line number of the current opcode
  *
  * Return: void
  */
-void pop(stack_t **stack, unsigned int line_number)
+void pop(stack_t **stack, unsigned int line)
 {
-	stack_t *tmp;
+	stack_t *temporary;
 
 	if (*stack == NULL)
 	{
-		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
+		fprintf(stderr, "L%u: can't pop an empty stack\n", line);
 		exit(EXIT_FAILURE);
 	}
 
-	tmp = *stack;
+	temporary = *stack;
 	*stack = (*stack)->next;
-	free(tmp);
+	free(temporary);
 }
