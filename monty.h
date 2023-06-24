@@ -37,14 +37,14 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void pop(stack_t **stack, unsigned int line);
-void pint(stack_t **stack, unsigned int line);
-
-void swap(stack_t **stack, unsigned int line);
 void push(stack_t **stack, unsigned int line);
 void pall(stack_t **stack, unsigned int line);
-void nop(stack_t **stack, unsigned int line);
+void pint(stack_t **stack, unsigned int line);
+void pop(stack_t **stack, unsigned int line);
+void swap(stack_t **stack, unsigned int line);
 void _add(stack_t **head, unsigned int line);
+void nop(stack_t **stack, unsigned int line);
+void dup(stack_t **stack, unsigned int line);
 void add_node(stack_t **head, const int n);
 int _isdigit(char *str);
 
