@@ -44,7 +44,7 @@ void swap(stack_t **stack, unsigned int line);
 void push(stack_t **stack, unsigned int line);
 void pall(stack_t **stack, unsigned int line);
 void nop(stack_t **stack, unsigned int line);
-void add(stack_t **head, unsigned int counter);
+void _add(stack_t **head, unsigned int counter);
 void add_node(stack_t **head, const int n);
 int _isdigit(char *str);
 

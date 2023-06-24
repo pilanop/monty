@@ -7,7 +7,7 @@
  *
  * Return: void
  */
-void add(stack_t **head, unsigned int line)
+void _add(stack_t **head, unsigned int line)
 {
 	stack_t *head_ptr;
 	int len = 0, aux;
