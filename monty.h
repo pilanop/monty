@@ -42,7 +42,7 @@ void pall(stack_t **stack, unsigned int line);
 void pint(stack_t **stack, unsigned int line);
 void pop(stack_t **stack, unsigned int line);
 void swap(stack_t **stack, unsigned int line);
-void _add(stack_t **head, unsigned int line);
+/* void _add(stack_t **head, unsigned int line);*/
 void nop(stack_t **stack, unsigned int line);
 void dup(stack_t **stack, unsigned int line);
 void add_node(stack_t **head, const int n);
