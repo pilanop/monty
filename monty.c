@@ -42,7 +42,6 @@ int main(int argc, char **argv)
 	    {"pop", pop},
 	    {"nop", nop},
 	    {"swap", swap},
-	    {"add", _add},
 	    {NULL, NULL}};
 
 	if (argc != 2)
